@@ -45,29 +45,31 @@
                 <div class="form-group">
                     <label for="servicio">Servicios</label>
                     <select class="form-control">
-                        <?php foreach ($servicio as $servi){?>
-                        <option><?php echo $servi->nombre; ?></option>
+                        
+                        <?php foreach ($servicio as $servi) { ?>
+                            <option><?php echo $servi->nombre; ?></option>
                         <?php } ?>
+                            
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="unidad">Unidades</label>
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        
+                        <?php foreach ($unidad as $unid) { ?>
+                            <option><?php echo $unid->nombre; ?></option>
+                        <?php } ?>
+                            
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="responsable">Responsables</label>
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        
+                        <?php foreach ($responsable as $resp) { ?>
+                            <option><?php echo $resp->nombre; ?></option>
+                        <?php } ?>
+                            
                     </select>
                 </div>
                 <div class="form-group">
@@ -87,9 +89,18 @@
         <script type="text/javascript" src="<?php echo base_url("resources/js/jquery.min.js"); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url("resources/js/bootstrap.min.js"); ?>"></script>
         <script>
-            
-            
-            
+                $(document).ready(function(){
+                    //alert('Hola yo');
+                    //id #nombredelaid
+                    //clas .nombredelaclass
+                    //quiero cambiar el nombre de la caja de texto name
+                    $('#nombre').val("Tu tienes que hacer tu cama");
+                    $('#nombre').click(function(){
+                        $('#nombre').val("No quiero Hacer mi cama")
+                    })
+                })
+
+
         </script>
     </body>
 </html>
