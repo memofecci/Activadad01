@@ -45,11 +45,9 @@
                 <div class="form-group">
                     <label for="servicio">Servicios</label>
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <?php foreach ($servicio as $servi){?>
+                        <option><?php echo $servi->nombre; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group">
