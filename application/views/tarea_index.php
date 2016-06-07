@@ -44,7 +44,7 @@
             <form>
                 <div class="form-group">
                     <label for="servicio">Servicios</label>
-                    <select class="form-control">
+                    <select class="form-control" id="servicio">
                         
                         <?php foreach ($servicio as $servi) { ?>
                             <option><?php echo $servi->nombre; ?></option>
@@ -54,22 +54,14 @@
                 </div>
                 <div class="form-group">
                     <label for="unidad">Unidades</label>
-                    <select class="form-control">
-                        
-                        <?php foreach ($unidad as $unid) { ?>
-                            <option><?php echo $unid->nombre; ?></option>
-                        <?php } ?>
-                            
+                    <select class="form-control" id="unidades">
+                                                    
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="responsable">Responsables</label>
-                    <select class="form-control">
+                    <select class="form-control" id="responsable">
                         
-                        <?php foreach ($responsable as $resp) { ?>
-                            <option><?php echo $resp->nombre; ?></option>
-                        <?php } ?>
-                            
                     </select>
                 </div>
                 <div class="form-group">
@@ -90,15 +82,14 @@
         <script type="text/javascript" src="<?php echo base_url("resources/js/bootstrap.min.js"); ?>"></script>
         <script>
                 $(document).ready(function(){
-                    //alert('Hola yo');
-                    //id #nombredelaid
-                    //clas .nombredelaclass
-                    //quiero cambiar el nombre de la caja de texto name
-                    $('#nombre').val("Tu tienes que hacer tu cama");
-                    $('#nombre').click(function(){
-                        $('#nombre').val("No quiero Hacer mi cama")
-                    })
-                })
+                    //cuando el servicio cambia
+                    $('#servicio').change(function(){
+                        //pidiendo JSON
+                        $.get("Tarea/obtenerUnidades", function(data, status){
+                            console.log("Data: " + data + "\nStatus: " + status);
+                        });
+                    });
+                });
 
 
         </script>

@@ -22,9 +22,13 @@ class Tarea extends CI_Controller{
     }
     public function index(){
         $data['servicio']=  $this->Servicio_model->getAll();
-        $data['unidad']=  $this->Unidad_model->getAll();
-        $data['responsable']=  $this->Responsable_model->getAll();
+        //$data['unidad']=  $this->Unidad_model->getAll();
+        //$data['responsable']=  $this->Responsable_model->getAll();
         $this->load->view('tarea_index',$data);
         
+    }
+    public function obtenerUnidades($id){
+        $data=  $this->Unidad_model->findbyid($id);
+        echo json_encode($data);
     }
 }
