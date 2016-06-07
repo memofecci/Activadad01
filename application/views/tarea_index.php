@@ -87,7 +87,11 @@
                         var servicio_id=$('#servicio').val();
                         //pidiendo JSON
                         $.get("Tarea/obtenerUnidades/"+servicio_id, function(data, status){
-                            alert("Data: " + data + "\nStatus: " + status);
+                             datos = $.parseJSON(data);
+                                $.each(datos, function (i, item) {
+                                    console.log(item);
+
+                              });
                            // console.log("Data: " + data + "\nStatus: " + status);
                       });
                     });
