@@ -47,7 +47,7 @@
                     <select class="form-control" id="servicio">
                         
                         <?php foreach ($servicio as $servi) { ?>
-                            <option><?php echo $servi->nombre; ?></option>
+                        <option value="<?php echo $servi->servicio_id; ?>"><?php echo $servi->nombre; ?></option>
                         <?php } ?>
                             
                     </select>
@@ -84,10 +84,12 @@
                 $(document).ready(function(){
                     //cuando el servicio cambia
                     $('#servicio').change(function(){
+                        var servicio_id=$('#servicio').val();
                         //pidiendo JSON
-                        $.get("Tarea/obtenerUnidades", function(data, status){
-                            console.log("Data: " + data + "\nStatus: " + status);
-                        });
+                        $.get("Tarea/obtenerUnidades/"+servicio_id, function(data, status){
+                            alert("Data: " + data + "\nStatus: " + status);
+                           // console.log("Data: " + data + "\nStatus: " + status);
+                      });
                     });
                 });
 
