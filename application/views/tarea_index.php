@@ -14,6 +14,7 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="<?php echo base_url("resources/css/bootstrap.min.css"); ?>" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css" rel="stylesheet" />
 
     </head>
 
@@ -64,12 +65,17 @@
                     <select class="form-control" id='responsable'>
 
                     </select>
-                </div>
 
 
                 <div class="form-group">
                     <label for="nombre">Nombre de Tarea</label>
                     <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre Tarea">
+                </div>
+                    <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
                 </div>
 
 
@@ -87,14 +93,17 @@
         <script type="text/javascript" src="<?php echo base_url("resources/js/jquery.min.js"); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url("resources/js/bootstrap.min.js"); ?>"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('select').select2();
+                $('select').select2({
+                    placeholder: 'Seleccionar Opcion'
+                       });
                 
                 $('#servicio').change(function () {
                     $('#unidad').empty();
                     $('#responsable').empty();
-                    $('#unidad').append('<option>--Seleccionar Unidad--</option>');
+                    $('#unidad').append('<option>--Seleccionar Unidad--</option>');                    
                     var servicio_id = $('#servicio').val();
                     $.get("Tarea/obtenerUnidades/" + servicio_id, function (data, status) {
                         datos = $.parseJSON(data);
@@ -105,7 +114,7 @@
                 });
                 $('#unidad').change(function () {
                     $('#responsable').empty();
-                    $('#responsable').append('<option>--Seleccionar Responsable--</option>');
+                    //$('#responsable').append('<option>--Seleccionar Responsable--</option>');
                     var unidad_id = $('#unidad').val();
                     $.get("Tarea/obtenerResponsables/" + unidad_id, function (data, status) {
                         datos = $.parseJSON(data);
