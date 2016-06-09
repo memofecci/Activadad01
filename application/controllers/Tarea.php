@@ -31,4 +31,8 @@ class Tarea extends CI_Controller{
         $data=  $this->Unidad_model->findbyid($id);
         echo json_encode($data);
     }
+    public function obtenerResponsables($id){
+        $data=  $this->Responsable_model->findbyid($id);
+        echo json_encode($data);
+    }
 }

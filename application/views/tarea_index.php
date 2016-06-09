@@ -40,34 +40,39 @@
         </nav>
 
         <div class="container">
-            <br><br><br><br>
+            <br><br><br>
             <form>
                 <div class="form-group">
                     <label for="servicio">Servicios</label>
-                    <select class="form-control" id="servicio">
-                        
+                    <select class="form-control" id='servicio'  >
+                        <option >-- Seleccionar Opcion --</option>
                         <?php foreach ($servicio as $servi) { ?>
-                        <option value="<?php echo $servi->servicio_id; ?>"><?php echo $servi->nombre; ?></option>
+                            <option value=<?php echo $servi->servicio_id; ?>><?php echo $servi->nombre; ?></option>
                         <?php } ?>
-                            
+
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="unidad">Unidades</label>
-                    <select class="form-control" id="unidades">
-                                                    
+                    <label for="unidad" id=''>Unidades</label>
+                    <select class="form-control" id='unidad'>
+                           
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="responsable">Responsables</label>
-                    <select class="form-control" id="responsable">
-                        
+                    <select class="form-control" id='responsable'>
+
                     </select>
                 </div>
+
+
                 <div class="form-group">
                     <label for="nombre">Nombre de Tarea</label>
-                    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre Tareal">
+                    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre Tarea">
                 </div>
+
+
+
                 <button type="submit" class="btn btn-default">Asignar Actividad</button>
             </form>
 
@@ -81,23 +86,31 @@
         <script type="text/javascript" src="<?php echo base_url("resources/js/jquery.min.js"); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url("resources/js/bootstrap.min.js"); ?>"></script>
         <script>
-                $(document).ready(function(){
-                    //cuando el servicio cambia
-                    $('#servicio').change(function(){
-                        var servicio_id=$('#servicio').val();
-                        //pidiendo JSON
-                        $.get("Tarea/obtenerUnidades/"+servicio_id, function(data, status){
-                             datos = $.parseJSON(data);
-                                $.each(datos, function (i, item) {
-                                    console.log(item);
-
-                              });
-                           // console.log("Data: " + data + "\nStatus: " + status);
-                      });
+            $(document).ready(function () {
+                $('#servicio').change(function () {
+                    $('#unidad').empty();
+                    $('#responsable').empty();
+                    $('#unidad').append('<option>--Seleccionar Unidad--</option>');
+                    var servicio_id = $('#servicio').val();
+                    $.get("Tarea/obtenerUnidades/" + servicio_id, function (data, status) {
+                        datos = $.parseJSON(data);
+                        $.each(datos, function (i, item) {
+                            $('#unidad').append('<option value='+item.unidad_id+'>'+item.nombre+'</option>');
+                        });
                     });
                 });
-
-
+                $('#unidad').change(function () {
+                    $('#responsable').empty();
+                    $('#responsable').append('<option>--Seleccionar Responsable--</option>');
+                    var unidad_id = $('#unidad').val();
+                    $.get("Tarea/obtenerResponsables/" + unidad_id, function (data, status) {
+                        datos = $.parseJSON(data);
+                        $.each(datos, function (i, item) {
+                            $('#responsable').append('<option value='+item.responsable_id+'>'+item.nombre+'</option>');
+                        });
+                    });
+                });
+            });
         </script>
     </body>
 </html>
